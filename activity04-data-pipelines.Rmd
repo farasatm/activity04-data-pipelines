@@ -1,6 +1,6 @@
 ---
 title: "Activity 4"
-author: "Name"
+author: "Moeen Farasat"
 output: github_document
 ---
 
@@ -33,7 +33,7 @@ Knit your report with the `message = FALSE` R code chunk option and pay attentio
 Now, switch this option to `message = TRUE` and knit your report again.
 Discuss what is different when the `message` option is turned on (`TRUE`) and turned off (`FALSE`) for the previous code chunk.
 
-**Response**:
+**With message turned on ("TRUE"), the document shows the log of what was loaded and if there were any conflicts**:
 
 
 Turn the `message` option off and continue in this activity.
@@ -69,6 +69,7 @@ I try to be consistent with notation so here are some other forms that you might
 # function comes from.
 
 college_recent_grads <- readr::read_csv("data/recent-grads.csv")
+head(college_recent_grads)
 ```
 
 Notice that this dataset is in a folder called `data`.
@@ -77,7 +78,7 @@ You can view the entire dataset by clicking on the name of the data frame in the
 
 Explore and describe what the `message` option does in `load_data` code chunk.
 
-**Response**:
+**Shows the Column specification**:
 
 
 Turn the `message` option off and continue in this activity.
@@ -121,8 +122,8 @@ Below is a blank R code chunk.
 Name this code chunk `college_grads_top`; you do not need to suppress messages.
 In this code chunk, type `college_recent_grads` to view the top few (first 10) entries of the dataset.
 
-```{r}
-
+```{r college_recent_grads, message = FALSE}
+head(college_recent_grads, 10)
 ```
 
 
@@ -176,7 +177,7 @@ Describe how you would go about answering this question using a different softwa
 You do not need to code anything.
 As you write this process, think of it as a series of steps and it might be helpful to start at the goal and work backwards.
 
-**Response**:
+**To find the major with lowest unemployment rate, I will sort the dataset using the column unemployment_rate, and then select the first one given that its sorted in ascending order, Same thing I will do to find highest percentage of women, I will sort the dataset based on sharewomen column and sort it by descending order, for the third one, I will serparate the stem major by filtering based on the major_code and comparing them against median **:
 
 
 #### Using `{dplyr}`
@@ -185,7 +186,9 @@ In the R code chunk below, name it `rearrange_college`.
 
 Take the `college_recent_grads` dataset, *then* `arrange` the dataset by `unemployment_rate`.
 
-```{r}
+```{r rearrange_college, message=FALSE}
+college_recent_grads_arranged <- arrange(college_recent_grads, unemployment_rate)
+head(college_recent_grads_arranged);
 
 ```
 
@@ -199,7 +202,10 @@ Use the pipeline that you made in the `rearrange_college` code chunk as the star
 Name this code chunk `lowest_unemploy`.
 
 ```{r}
-
+ rearrange_college <- college_recent_grads %>% 
+                                 select(`rank`, `major`,`unemployment_rate`) %>% 
+                                  arrange(unemployment_rate)
+head(rearrange_college)
 ```
 
 **Response**:
@@ -212,13 +218,18 @@ Name this code chunk `lowest_unemploy`.
 Using the `college_recent_grads` dataset and functions from `{dplyr}`, `arrange` the dataset by `sharewomen`, and `select` only `rank`, `major`, and `sharewomen`. 
 Name your code chunk `highest_prop_women`.
 
-```{r}
+```{r highest_prop_women}
+
+highest_prop_women <- college_recent_grads %>% 
+                                 select(`rank`, `major`,`sharewomen`) %>% 
+                                  arrange(desc(sharewomen))
+head(highest_prop_women)
 
 ```
 
 Discuss your output as it relates to the research question.
 
-**Response**:
+**Early Childhood Education has the highest proportion of women?**:
 
 
 ![](README-img/noun_pause.png) **Planned Pause Point**: If you have any questions, contact your instructor. Otherwise feel free to continue on.
