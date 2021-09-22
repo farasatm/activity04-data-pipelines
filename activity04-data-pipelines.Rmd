@@ -246,6 +246,8 @@ stem_categories <- c("Biology & Life Science",
                      "Computers & Mathematics",
                      "Engineering",
                      "Physical Sciences")
+
+
 ```
 
 In our next activity we will see how to calculate summary statistics, but for now believe me that the median salary for all majors is $36,000.
@@ -255,12 +257,15 @@ Only display the variables `major`, `p25th`, `median`, and `p75th`
 Name the code chunk `stem_low_salaries`.
 
 ```{r}
-
+college_recent_grads %>%
+  select(major, major_category, p25th, median, p75th) %>%
+  filter(major_category == stem_categories)%>%
+  arrange(median)
 ```
 
 Discuss your output as it relates to the research question.
 
-**Response**:
+**Zoology, Ecology, Communication Technologies, Neuroscience, and Environmental Science majors all have median salaries below $36,000, meaning they make less than the median salary for all majors.**:
 
 
 ![](README-img/noun_pause.png) **(Final) Planned Pause Point**: If you have any questions, contact your instructor. Otherwise feel free to continue on.

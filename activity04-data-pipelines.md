@@ -364,9 +364,36 @@ for all majors is $36,000 to *keep* the rows in the
 variables `major`, `p25th`, `median`, and `p75th` Name the code chunk
 `stem_low_salaries`.
 
+``` r
+college_recent_grads %>%
+  select(major, major_category, p25th, median, p75th) %>%
+  filter(major_category == stem_categories)%>%
+  arrange(median)
+```
+
+    ## Warning in major_category == stem_categories: longer object length is not a
+    ## multiple of shorter object length
+
+    ## # A tibble: 24 x 5
+    ##    major                                 major_category       p25th median p75th
+    ##    <chr>                                 <chr>                <dbl>  <dbl> <dbl>
+    ##  1 Zoology                               Biology & Life Scie… 20000  26000 39000
+    ##  2 Ecology                               Biology & Life Scie… 23000  33000 42000
+    ##  3 Communication Technologies            Computers & Mathema… 25000  35000 45000
+    ##  4 Neuroscience                          Biology & Life Scie… 30000  35000 44000
+    ##  5 Environmental Science                 Biology & Life Scie… 25000  35600 40200
+    ##  6 Computer Administration Management A… Computers & Mathema… 25000  37500 50000
+    ##  7 Microbiology                          Biology & Life Scie… 29600  38000 50000
+    ##  8 Architecture                          Engineering          31000  40000 50000
+    ##  9 Mechanical Engineering Related Techn… Engineering          27000  40000 52000
+    ## 10 Computer Programming And Data Proces… Computers & Mathema… 20000  41300 46000
+    ## # … with 14 more rows
+
 Discuss your output as it relates to the research question.
 
-**Response**:
+**Zoology, Ecology, Communication Technologies, Neuroscience, and
+Environmental Science majors all have median salaries below $36,000,
+meaning they make less than the median salary for all majors.**:
 
 ![](README-img/noun_pause.png) **(Final) Planned Pause Point**: If you
 have any questions, contact your instructor. Otherwise feel free to
